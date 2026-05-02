@@ -1,6 +1,7 @@
 import { MapPin } from "lucide-react"; // Importamos solo los iconos necesarios
 import Link from "next/link";
 import Image from "next/image";
+import { FaInstagram } from "react-icons/fa"; 
 
 export default function Footer() {
   return (
@@ -33,39 +34,33 @@ export default function Footer() {
           {/* Otro flex container para alinear iconos y texto */}
           <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-8 text-sm text-gray-300">
             
-            {/* ENLACE INSTAGRAM */}
             <a 
-              href="https://www.instagram.com/tu_usuario" // REEMPLAZA CON TU LINK
+              href="https://www.instagram.com/natiyogacoral/" 
               target="_blank" 
               rel="noopener noreferrer"
               className="flex items-center gap-2.5 hover:text-coral transition-colors duration-200"
             >
               {/* Icono de Instagram de Lucide */}
-              <MapPin size={18} className="text-coral" />
-              <span>@msgroup_logistica</span> {/* REEMPLAZA CON TU USUARIO */}
+              <FaInstagram size={18} className="text-coral" />
+              <span>natiyogacoral</span> 
             </a>
 
-            {/* Separador visual opcional (solo visible en escritorio) */}
             <span className="hidden sm:block text-white/20" aria-hidden="true">|</span>
 
-            {/* ENLACE UBICACIÓN */}
             <a 
-              href="https://maps.app.goo.gl/tu_enlace_a_google_maps" // REEMPLAZA CON TU LINK DE GOOGLE MAPS
+              href="https://maps.app.goo.gl/tu_enlace_a_google_maps"
               target="_blank" 
               rel="noopener noreferrer"
               className="flex items-center gap-2.5 hover:text-coral transition-colors duration-200"
             >
-              {/* Icono de MapPin de Lucide (usando tu color coral) */}
               <MapPin size={18} className="text-coral" />
-              <span>Tte. Gral. Juan D. Perón 683, CABA</span>
+              <span>Malta</span>
             </a>
           </div>
 
         </div>
-
-        {/* Pequeña línea de copyright opcional debajo, muy sutil */}
         <div className="mt-8 pt-6 border-t border-white/5 text-center text-xs text-gray-500">
-          © {new Date().getFullYear()} MS Group S.R.L.
+          © {new Date().getFullYear()} Coral Reef
         </div>
 
       </div>
