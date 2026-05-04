@@ -4,6 +4,7 @@ import IntroYoga from "./components/IntroYoga";
 import PrivateClasses from "./components/PrivateClasses";
 import Classes from "./components/Classes";
 import Footer from "./components/Footer";
+import VideosCarousel from "./components/VideosCarousel";
 
 
 export default function Home() {
@@ -21,6 +22,7 @@ export default function Home() {
     <Classes></Classes>
     <PrivateClasses></PrivateClasses>
     <GroupClasses></GroupClasses>
+    <VideosCarousel></VideosCarousel>
     <Footer></Footer>
     </>
   );

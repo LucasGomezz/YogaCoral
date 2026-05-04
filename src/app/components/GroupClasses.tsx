@@ -39,7 +39,7 @@ export default function GroupClasses() {
                         {/* Tarjeta 1 */}
                         <div className="relative group overflow-hidden rounded-3xl aspect-[4/5] shadow-xl">
                             <video
-                                src="/videos/group1.mov" // Reemplaza con tu segunda ruta
+                                src="/videos/group1.mov"
                                 autoPlay
                                 loop
                                 muted
@@ -51,11 +51,13 @@ export default function GroupClasses() {
 
                         {/* Tarjeta 2 */}
                         <div className="relative group overflow-hidden rounded-3xl aspect-[4/5] shadow-xl">
-                            <Image
-                                src="/images/group-yoga-2.jpg" // Reemplaza con tu ruta
-                                alt="Meditation Group"
-                                fill
-                                className="object-cover transition-transform duration-700 group:scale-110"
+                            <video
+                                src="/videos/group2.mov"
+                                autoPlay
+                                loop
+                                muted
+                                playsInline
+                                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700"
                             />
                             <div className="absolute inset-0 bg-black/10 group:bg-black/20 transition-colors" />
                         </div>
