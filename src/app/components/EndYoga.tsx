@@ -5,16 +5,22 @@ import { motion } from "framer-motion";
 // 1. Traducciones del componente
 const content = {
   en: {
-    eyebrow: "CLASSES",
-    headline: "Find the perfect practice for you",
+    headline: (
+      <>
+        Connect your <span className="font-bold text-[#8e735b]">body</span>, calm your <span className="font-bold text-[#8e735b]">mind</span>, and awaken your <span className="font-bold text-[#8e735b]">soul</span>
+      </>
+    ),
   },
   es: {
-    eyebrow: "CLASES",
-    headline: "Encontrá la práctica perfecta para vos",
+    headline: (
+      <>
+        Conectá tu <span className="font-bold text-[#8e735b]">cuerpo</span>, calma tu <span className="font-bold text-[#8e735b]">mente</span> y despertá tu <span className="font-bold text-[#8e735b]">alma</span>
+      </>
+    ),
   },
 };
 
-export default function Classes({ lang = "en" }: { lang?: string }) {
+export default function EndYoga({ lang = "en" }: { lang?: string }) {
   // Seleccionamos el idioma
   const t = content[lang as keyof typeof content] || content.en;
 
@@ -32,22 +38,17 @@ export default function Classes({ lang = "en" }: { lang?: string }) {
     >
       <motion.div {...fadeInUp}>
         <div className="relative z-10 max-w-5xl mx-auto">
-          {/* Título: Estilo "Etiqueta" (Eyebrow) */}
-          <h2 className="text-[#d7bdb3] text-xs md:text-sm font-title mb-3 tracking-[0.2em] uppercase">
-            {t.eyebrow}
-          </h2>
-
-          {/* Párrafo: Frase de impacto */}
+          {/* Párrafo: Frase de cierre con spans dinámicos */}
           <p className="max-w-2xl mx-auto leading-snug font-body font-medium text-[#8e735b] text-3xl md:text-4xl">
             {t.headline}
           </p>
 
           <div className="mt-10 flex items-center justify-center gap-4">
             {/* Línea Izquierda */}
-            <div className="h-px w-24 md:w-48 bg-[#d7bdb3]/50" />
+            <div className="h-px w-24 md:w-48 bg-[#8e735b]/50" />
 
             {/* Icono de Coral */}
-            <div className="text-[#d7bdb3]">
+            <div className="text-[#8e735b]">
               <svg
                 viewBox="0 0 24 24"
                 width="40"
@@ -68,7 +69,7 @@ export default function Classes({ lang = "en" }: { lang?: string }) {
             </div>
 
             {/* Línea Derecha */}
-            <div className="h-px w-24 md:w-48 bg-[#d7bdb3]/50" />
+            <div className="h-px w-24 md:w-48 bg-[#8e735b]/50" />
           </div>
         </div>
       </motion.div>

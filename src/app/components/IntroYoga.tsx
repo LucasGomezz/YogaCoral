@@ -3,7 +3,32 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 
-export default function IntroYoga() {
+// 1. Traducciones del componente Intro
+const content = {
+  en: {
+    badge: "about me",
+    title: "I'm Natalia",
+    subtitle: "your yoga teacher",
+    paragraphs: [
+      "My journey with yoga began over 4 years ago as a personal search for physical and mental well-being. Over time, it became my lifestyle and my passion: guiding others to reconnect with themselves.",
+      "My classes combine mindful movement, breath, and presence. I believe in an accessible, loving, and transformative yoga practice.",
+    ],
+  },
+  es: {
+    badge: "sobre mí",
+    title: "Soy Natalia",
+    subtitle: "tu profesora de yoga",
+    paragraphs: [
+      "Mi camino en el yoga comenzó hace más de 4 años como una búsqueda personal de bienestar físico y mental. Con el tiempo, se convirtió en mi estilo de vida y mi pasión: guiar a otros a reconectar consigo mismos.",
+      "Mis clases combinan movimiento consciente, respiración y presencia. Creo en una práctica de yoga accesible, amorosa y transformadora.",
+    ],
+  },
+};
+
+export default function IntroYoga({ lang = "en" }: { lang?: string }) {
+  // Seleccionamos el idioma
+  const t = content[lang as keyof typeof content] || content.en;
+
   return (
     <section className="relative bg-[#f8f9fa] text-[#1a1a1a] py-16 lg:py-24 overflow-hidden">
       <motion.div
@@ -12,8 +37,7 @@ export default function IntroYoga() {
         viewport={{ once: false }}
         transition={{ duration: 1.2 }}
         className="absolute top-0 right-0 pointer-events-none"
-      >
-      </motion.div>
+      ></motion.div>
 
       <div className="relative max-w-7xl mx-auto px-6">
         <div className="grid lg:grid-cols-12 gap-0 border border-gray-200 bg-white shadow-xl overflow-hidden rounded-2xl">
@@ -26,8 +50,9 @@ export default function IntroYoga() {
           >
             <Image
               src="/images/nati.jpg"
-              alt="nati"
+              alt="Natalia"
               fill
+              sizes="(max-width: 1024px) 100vw, 40vw"
               className="object-cover contrast-125"
             />
           </motion.div>
@@ -49,7 +74,7 @@ export default function IntroYoga() {
               >
                 <span className="h-0.5 w-6 bg-[#d7bdb3]" />
                 <span className="text-[#d7bdb3] font-extrabold text-xs uppercase tracking-[0.2em] font-body">
-                  about me
+                  {t.badge}
                 </span>
               </motion.div>
 
@@ -60,19 +85,12 @@ export default function IntroYoga() {
                 transition={{ delay: 0.1, duration: 0.55 }}
                 className="text-4xl md:text-5xl font-title text-[#111] leading-[1.1] tracking-tight"
               >
-                I'm Natalia <br />
-                <span className="text-[#d7bdb3]">your yoga teacher</span>
+                {t.title} <br />
+                <span className="text-[#d7bdb3]">{t.subtitle}</span>
               </motion.h2>
 
               <div className="space-y-6">
-                {[
-                  <>
-                    My journey with yoga began over 4 years ago as a personal search for physical and mental well-being. Over time, it became my lifestyle and my passion: guiding others to reconnect with themselves.
-                  </>,
-                  <>
-                    My classes combine mindful movement, breath, and presence. I believe in an accessible, loving, and transformative yoga practice.
-                  </>,
-                ].map((text, i) => (
+                {t.paragraphs.map((text, i) => (
                   <motion.p
                     key={i}
                     initial={{ opacity: 0, y: 18 }}

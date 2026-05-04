@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import Link from "next/link"; // Importamos Link para la redirección
-import { usePathname } from "next/navigation"; // Para saber en qué ruta estamos
+import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import ContactModal from "@/app/components/ContactModal";
 
 type HeroProps = {
@@ -32,28 +32,27 @@ export default function Hero({
   defaultService = "Seleccionar servicio",
 }: HeroProps) {
   const [contactOpen, setContactOpen] = useState(false);
-  const pathname = usePathname();
-
-  // Función simple para determinar si estamos en ES o EN basado en la URL
-  // Asumiendo estructura /es/pagina o /en/pagina
-  const isSpanish = pathname.startsWith("/es");
+  
+  const searchParams = useSearchParams();
+  const lang = searchParams.get("lang") || "en";
+  const isSpanish = lang === "es";
 
   return (
     <>
       <section className="relative overflow-hidden min-h-screen flex items-center">
         
-        {/* SELECTOR DE IDIOMA - Arriba a la derecha */}
+        {/* SELECTOR DE IDIOMA */}
         <div className="absolute top-6 right-6 z-50 flex gap-3 text-sm font-bold">
           <Link 
-            href="/en" 
-            className={`transition-colors ${!isSpanish ? 'text-white underline decoration-coral underline-offset-4' : 'text-white/60 hover:text-white'}`}
+            href="/?lang=en" 
+            className={`transition-colors ${!isSpanish ? 'text-white underline decoration-[#d7bdb3] underline-offset-4' : 'text-white/60 hover:text-white'}`}
           >
             EN
           </Link>
           <span className="text-white/40">|</span>
           <Link 
-            href="/es" 
-            className={`transition-colors ${isSpanish ? 'text-white underline decoration-coral underline-offset-4' : 'text-white/60 hover:text-white'}`}
+            href="/?lang=es" 
+            className={`transition-colors ${isSpanish ? 'text-white underline decoration-[#d7bdb3] underline-offset-4' : 'text-white/60 hover:text-white'}`}
           >
             ES
           </Link>
@@ -107,7 +106,7 @@ export default function Hero({
 
             <button
               onClick={() => setContactOpen(true)}
-              className={`inline-flex items-center gap-2 ${buttonColor} text-white px-6 sm:px-8 md:px-10 py-3 md:py-4 rounded-md text-sm sm:text-lg md:text-xl lg:text-2xl cursor-pointer transition`}
+              className={`inline-flex items-center gap-2 ${buttonColor} text-white px-6 sm:px-8 md:px-10 py-3 md:py-4 rounded-md text-sm sm:text-lg md:text-xl lg:text-2xl cursor-pointer transition shadow-xl hover:scale-105 active:scale-95`}
             >
               {buttonText}
               <span className="text-base md:text-lg">→</span>
@@ -116,9 +115,11 @@ export default function Hero({
         </div>
       </section>
 
+      {/* MODAL DE CONTACTO CON LANG DINÁMICO */}
       <ContactModal
         open={contactOpen}
         onClose={() => setContactOpen(false)}
+        lang={lang} // Sincroniza el idioma del modal con el del Hero
         defaultService={defaultService}
       />
     </>
