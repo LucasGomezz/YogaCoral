@@ -10,27 +10,21 @@ export default function VideosCarousel() {
         if (!container) return;
 
         let animationFrame: number;
-
         const speed = 0.5;
 
         const start = () => {
             const step = () => {
                 if (!container) return;
-
                 container.scrollLeft += speed;
 
-                // loop infinito real
                 if (container.scrollLeft >= container.scrollWidth / 2) {
                     container.scrollLeft = 0;
                 }
-
                 animationFrame = requestAnimationFrame(step);
             };
-
             animationFrame = requestAnimationFrame(step);
         };
 
-        // pequeño delay para asegurar render
         const timeout = setTimeout(start, 100);
 
         return () => {
@@ -39,15 +33,16 @@ export default function VideosCarousel() {
         };
     }, []);
 
-    const videos = [
-        "/videos/carousel1.mov",
-        "/videos/carousel2.mov",
-        "/videos/carousel3.mov",
-        "/videos/carousel4.mp4",
-        "/videos/carousel5.mov",
+    const mediaItems = [
+        { type: "image", src: "/images/carousel1.png" },
+        { type: "video", src: "/videos/carousel2.mov" },
+        { type: "image", src: "/images/carousel3.png" },
+        { type: "video", src: "/videos/carousel4.mov" },
+        { type: "image", src: "/images/carousel5.png" },
+        { type: "video", src: "/videos/carousel6.mp4" },
     ];
 
-    const loopVideos = [...videos, ...videos];
+    const loopMedia = [...mediaItems, ...mediaItems];
 
     return (
         <section className="py-16 px-6 bg-[#8e735b]">
@@ -56,20 +51,28 @@ export default function VideosCarousel() {
                     ref={scrollRef}
                     className="flex gap-6 overflow-hidden"
                 >
-                    {loopVideos.map((video, index) => (
+                    {loopMedia.map((item, index) => (
                         <div
                             key={index}
                             className="min-w-[280px] md:min-w-[400px]"
                         >
-                            <div className="relative overflow-hidden rounded-3xl aspect-[4/5] shadow-xl">
-                                <video
-                                    src={video}
-                                    autoPlay
-                                    loop
-                                    muted
-                                    playsInline
-                                    className="absolute inset-0 w-full h-full object-cover"
-                                />
+                            <div className="relative overflow-hidden rounded-3xl aspect-[4/5] shadow-xl bg-black/10">
+                                {item.type === "video" ? (
+                                    <video
+                                        src={item.src}
+                                        autoPlay
+                                        loop
+                                        muted
+                                        playsInline
+                                        className="absolute inset-0 w-full h-full object-cover"
+                                    />
+                                ) : (
+                                    <img
+                                        src={item.src}
+                                        alt={`Carousel item ${index}`}
+                                        className="absolute inset-0 w-full h-full object-cover"
+                                    />
+                                )}
                             </div>
                         </div>
                     ))}

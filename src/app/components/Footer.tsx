@@ -46,7 +46,7 @@ export default function Footer() {
             <span className="hidden sm:block text-[#b89589]/100" aria-hidden="true">|</span>
 
             <a
-              href="https://maps.app.goo.gl/tu_enlace_a_google_maps"
+              href="https://www.instagram.com/natiyogacoral/"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2.5 hover:text-[#b89589] transition-colors duration-200"

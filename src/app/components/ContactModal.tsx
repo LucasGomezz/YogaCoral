@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Phone, Mail, MapPin, Clock3, MessageCircle, Sparkles } from "lucide-react";
+import { X, MapPin, Clock3, MessageCircle } from "lucide-react";
 
 const content = {
   en: {
@@ -11,13 +11,20 @@ const content = {
     formTitle: "Connect with Nati",
     formDesc: "Leave your details and let's coordinate your next session.",
     nameLabel: "Full Name",
-    companyLabel: "Instagram (Optional)",
     emailLabel: "Email Address",
     serviceLabel: "How can I guide you?",
-    services: ["Group Classes", "Private Classes", "Corporate / Events"],
+    services: ["Group Classes", "Private Classes"],
+    modeLabel: "Choose modality",
+    modes: ["Online", "In-person"],
     messagePlaceholder: "Your message or intention for the practice...",
     whatsappBtn: "Send via WhatsApp",
     hours: "Available: Mon - Fri · 09:00 - 18:00",
+    wpGreeting: "Hi Nati! how are you??",
+    wpName: "My name is",
+    wpService: "Service",
+    wpMode: "Modality",
+    wpMessage: "Inquiry",
+    wpGeneral: "General Inquiry"
   },
   es: {
     subtitle: "El equilibrio comienza aquí",
@@ -25,20 +32,27 @@ const content = {
     formTitle: "Conectá con Nati",
     formDesc: "Dejá tus datos y coordinemos tu próxima sesión.",
     nameLabel: "Nombre completo",
-    companyLabel: "Instagram (Opcional)",
     emailLabel: "Correo electrónico",
     serviceLabel: "¿Cómo puedo guiarte?",
-    services: ["Clases Grupales", "Clases Privadas", "Corporativos / Eventos"],
+    services: ["Clases Grupales", "Clases Privadas"],
+    modeLabel: "Elegir modalidad",
+    modes: ["Online", "Presencial"],
     messagePlaceholder: "Tu mensaje o intención para la práctica...",
     whatsappBtn: "Enviar por WhatsApp",
     hours: "Disponible: Lun - Vie · 09:00 - 18:00",
+    wpGreeting: "¡Hola Nati! cómo estás??",
+    wpName: "Soy",
+    wpService: "Servicio",
+    wpMode: "Modalidad",
+    wpMessage: "Consulta",
+    wpGeneral: "Consulta General"
   }
 };
 
 type ContactModalProps = {
   open: boolean;
   onClose: () => void;
-  defaultService?: string; // Aquí recibiremos "Clases Grupales", "Private Classes", etc.
+  defaultService?: string;
   lang?: string;
 };
 
@@ -51,25 +65,23 @@ export default function ContactModal({
   const t = content[lang as keyof typeof content] || content.en;
 
   const [name, setName] = useState("");
-  const [company, setCompany] = useState("");
   const [email, setEmail] = useState("");
   const [service, setService] = useState("");
+  const [mode, setMode] = useState("");
   const [message, setMessage] = useState("");
   const [errors, setErrors] = useState({ name: false, email: false, message: false });
 
-  // Lógica de Sincronización Dinámica
   useEffect(() => {
     if (open) {
-      // Si defaultService coincide con uno de los servicios de la lista, lo seleccionamos.
-      // Si no (viene del Navbar/Hero sin info extra), usamos el placeholder "How can I guide you?"
       if (defaultService && t.services.includes(defaultService)) {
         setService(defaultService);
       } else {
         setService(t.serviceLabel);
       }
+      setMode(t.modeLabel);
       setErrors({ name: false, email: false, message: false });
     }
-  }, [open, lang, defaultService, t.services, t.serviceLabel]);
+  }, [open, lang, defaultService, t.services, t.serviceLabel, t.modeLabel]);
 
   useEffect(() => {
     if (!open) {
@@ -86,20 +98,21 @@ export default function ContactModal({
   }, [open, onClose]);
 
   const sendWhatsapp = () => {
-    const newErrors = { 
-      name: !name.trim(), 
-      email: !email.trim() || !email.includes("@"), 
-      message: !message.trim() 
+    const newErrors = {
+      name: !name.trim(),
+      email: !email.trim() || !email.includes("@"),
+      message: !message.trim()
     };
     setErrors(newErrors);
 
     if (Object.values(newErrors).some(error => error)) return;
 
-    // Si el servicio es el placeholder, mandamos "Consulta general" o similar
-    const selectedService = service === t.serviceLabel ? "Consulta General" : service;
+    const selectedService = service === t.serviceLabel ? t.wpGeneral : service;
+    const selectedMode = mode === t.modeLabel ? "Not specified" : mode;
 
-    const text = `Hola Nati! ✨\n\nSoy *${name}*\n${company ? `📌 Ref: ${company}\n` : ""}📧 Email: ${email}\n🧘 Servicio: ${selectedService}\n\n💬 Consulta: ${message}`;
-    window.open(`https://wa.me/541135925567?text=${encodeURIComponent(text)}`, "_blank");
+    const text = `${t.wpGreeting}\n\n${t.wpName}: *${name}*\nEmail: ${email}\n${t.wpService}: ${selectedService}\n${t.wpMode}: ${selectedMode}\n\n${t.wpMessage}: ${message}`;
+
+    window.open(`https://wa.me/35677146309?text=${encodeURIComponent(text)}`, "_blank");
   };
 
   return (
@@ -122,9 +135,9 @@ export default function ContactModal({
             className="fixed inset-0 z-[101] flex items-center justify-center p-4 pointer-events-none"
           >
             <div className="relative w-full max-w-5xl max-h-[90vh] overflow-hidden rounded-[2.5rem] bg-white shadow-[0_32px_64px_-16px_rgba(0,0,0,0.3)] pointer-events-auto flex flex-col lg:flex-row">
-              
-              <button 
-                onClick={onClose} 
+
+              <button
+                onClick={onClose}
                 className="absolute top-6 right-6 z-30 rounded-full p-2 bg-neutral-100 hover:bg-neutral-200 transition-colors cursor-pointer group"
               >
                 <X size={20} className="text-neutral-600 group-hover:rotate-90 transition-transform duration-300" />
@@ -133,10 +146,10 @@ export default function ContactModal({
               {/* Columna Izquierda */}
               <div className="hidden lg:flex lg:w-[40%] bg-[#2d3a4b] p-12 flex-col justify-between relative overflow-hidden">
                 <div className="absolute top-[-10%] right-[-10%] w-64 h-64 bg-[#d7bdb3]/15 rounded-full blur-3xl" />
-                
+
                 <div className="relative z-10">
                   <div className="flex items-center gap-2 text-[#d7bdb3] mb-6">
-                    <Sparkles size={18} />
+                    <img src="/images/coral.png" alt="Icono" style={{ width: '48px', height: '48px' }} />
                     <span className="text-xs font-bold uppercase tracking-[0.4em]">Coral Reef</span>
                   </div>
                   <h2 className="text-4xl font-serif text-white leading-tight mb-4">{t.subtitle}</h2>
@@ -177,14 +190,6 @@ export default function ContactModal({
                     />
 
                     <input
-                      type="text"
-                      placeholder={t.companyLabel}
-                      value={company}
-                      onChange={(e) => setCompany(e.target.value)}
-                      className="w-full bg-neutral-50 border border-neutral-200 rounded-2xl px-5 py-4 outline-none transition-all text-neutral-800 placeholder-neutral-500 focus:bg-white focus:ring-4 focus:ring-[#d7bdb3]/10 focus:border-[#d7bdb3]"
-                    />
-
-                    <input
                       type="email"
                       placeholder={t.emailLabel}
                       value={email}
@@ -192,20 +197,37 @@ export default function ContactModal({
                       className={`w-full bg-neutral-50 border border-neutral-200 rounded-2xl px-5 py-4 outline-none transition-all text-neutral-800 placeholder-neutral-500 focus:bg-white focus:ring-4 focus:ring-[#d7bdb3]/10 focus:border-[#d7bdb3] ${errors.email ? "border-red-400 bg-red-50" : ""}`}
                     />
 
+                    {/* Selector de Servicio */}
                     <div className="relative">
                       <select
                         value={service}
                         onChange={(e) => setService(e.target.value)}
                         className="w-full bg-neutral-50 border border-neutral-200 rounded-2xl px-5 py-4 outline-none appearance-none cursor-pointer text-neutral-800 focus:bg-white focus:ring-4 focus:ring-[#d7bdb3]/10 focus:border-[#d7bdb3]"
                       >
-                        {/* Opción placeholder: solo visible si nada ha sido seleccionado */}
                         <option value={t.serviceLabel}>{t.serviceLabel}</option>
                         {t.services.map((s) => (
                           <option key={s} value={s}>{s}</option>
                         ))}
                       </select>
                       <div className="absolute right-5 top-1/2 -translate-y-1/2 pointer-events-none text-neutral-400">
-                        <motion.div animate={{ y: [0, 3, 0] }} transition={{ repeat: Infinity, duration: 2.5 }}>↓</motion.div>
+                        <span className="text-xs">▼</span>
+                      </div>
+                    </div>
+
+                    {/* Selector de Modalidad */}
+                    <div className="relative">
+                      <select
+                        value={mode}
+                        onChange={(e) => setMode(e.target.value)}
+                        className="w-full bg-neutral-50 border border-neutral-200 rounded-2xl px-5 py-4 outline-none appearance-none cursor-pointer text-neutral-800 focus:bg-white focus:ring-4 focus:ring-[#d7bdb3]/10 focus:border-[#d7bdb3]"
+                      >
+                        <option value={t.modeLabel}>{t.modeLabel}</option>
+                        {t.modes.map((m) => (
+                          <option key={m} value={m}>{m}</option>
+                        ))}
+                      </select>
+                      <div className="absolute right-5 top-1/2 -translate-y-1/2 pointer-events-none text-neutral-400">
+                        <span className="text-xs">▼</span>
                       </div>
                     </div>
 
