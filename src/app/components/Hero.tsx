@@ -59,7 +59,7 @@ export default function Hero({
 
         {/* BACKGROUND MEDIA */}
         {mediaType === "video" ? (
-          <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover contrast-125">
+          <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover contrast-55">
             <source src={mediaSrc} type="video/mp4" />
           </video>
         ) : (

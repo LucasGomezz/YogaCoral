@@ -10,34 +10,32 @@ export default function VideosCarousel() {
         if (!container) return;
 
         let animationFrame: number;
-        const speed = 0.5;
 
-        const start = () => {
-            const step = () => {
-                if (!container) return;
-                container.scrollLeft += speed;
+        const isMobile = window.innerWidth < 768;
+        const speed = isMobile ? 0.3 : 0.6;
 
-                if (container.scrollLeft >= container.scrollWidth / 2) {
-                    container.scrollLeft = 0;
-                }
-                animationFrame = requestAnimationFrame(step);
-            };
+        const step = () => {
+            if (!container) return;
+
+            container.scrollLeft += speed;
+
+            if (container.scrollLeft >= container.scrollWidth / 2) {
+                container.scrollLeft = 0;
+            }
+
             animationFrame = requestAnimationFrame(step);
         };
 
-        const timeout = setTimeout(start, 100);
+        animationFrame = requestAnimationFrame(step);
 
-        return () => {
-            clearTimeout(timeout);
-            cancelAnimationFrame(animationFrame);
-        };
+        return () => cancelAnimationFrame(animationFrame);
     }, []);
 
     const mediaItems = [
         { type: "image", src: "/images/carousel1.PNG" },
-        { type: "video", src: "/videos/carousel2.mov" },
+        { type: "video", src: "/videos/carousel2.mp4" }, // ⚠️ usar MP4
         { type: "image", src: "/images/carousel3.PNG" },
-        { type: "video", src: "/videos/carousel4.mov" },
+        { type: "video", src: "/videos/carousel4.mp4" },
         { type: "image", src: "/images/carousel5.PNG" },
         { type: "video", src: "/videos/carousel6.mp4" },
     ];
@@ -49,7 +47,7 @@ export default function VideosCarousel() {
             <div className="max-w-7xl mx-auto overflow-hidden">
                 <div
                     ref={scrollRef}
-                    className="flex gap-6 overflow-hidden"
+                    className="flex gap-6 overflow-x-auto no-scrollbar will-change-transform"
                 >
                     {loopMedia.map((item, index) => (
                         <div
@@ -64,6 +62,7 @@ export default function VideosCarousel() {
                                         loop
                                         muted
                                         playsInline
+                                        preload="metadata"
                                         className="absolute inset-0 w-full h-full object-cover"
                                     />
                                 ) : (
