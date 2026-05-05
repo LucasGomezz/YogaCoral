@@ -65,7 +65,7 @@ export default function GroupClasses({ lang = "en" }: { lang?: string }) {
             {/* Tarjeta 1 */}
             <div className="relative group overflow-hidden rounded-3xl aspect-[4/5] shadow-xl">
               <video
-                src="/videos/group1.mov"
+                src="/videos/group1.MOV"
                 autoPlay
                 loop
                 muted

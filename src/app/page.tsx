@@ -43,7 +43,7 @@ export default async function Home({
         buttonText={t.button}
         buttonColor="bg-coral hover:bg-coral/90"
         mediaType="video"
-        mediaSrc="/videos/hero.mov"
+        mediaSrc="/videos/hero.MOV"
         overlayOpacity="bg-black/30"
         gradient={true} 
         defaultService={t.defaultService}
