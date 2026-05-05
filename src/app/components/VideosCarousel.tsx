@@ -34,11 +34,11 @@ export default function VideosCarousel() {
     }, []);
 
     const mediaItems = [
-        { type: "image", src: "/images/carousel1.png" },
+        { type: "image", src: "/images/carousel1.PNG" },
         { type: "video", src: "/videos/carousel2.mov" },
-        { type: "image", src: "/images/carousel3.png" },
+        { type: "image", src: "/images/carousel3.PNG" },
         { type: "video", src: "/videos/carousel4.mov" },
-        { type: "image", src: "/images/carousel5.png" },
+        { type: "image", src: "/images/carousel5.PNG" },
         { type: "video", src: "/videos/carousel6.mp4" },
     ];
 

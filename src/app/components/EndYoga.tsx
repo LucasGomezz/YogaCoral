@@ -34,7 +34,6 @@ export default function EndYoga({ lang = "en" }: { lang?: string }) {
   return (
     <div
       className="relative bg-[#f6f4f0] bg-cover bg-center bg-no-repeat py-16 px-6 text-center"
-      style={{ backgroundImage: "url('/images/textures/soft-waves.png')" }}
     >
       <motion.div {...fadeInUp}>
         <div className="relative z-10 max-w-5xl mx-auto">
