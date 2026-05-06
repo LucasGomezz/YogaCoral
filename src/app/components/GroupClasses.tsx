@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 import { Users } from "lucide-react";
-import ContactModal from "@/app/components/ContactModal"; // Ajusta la ruta si es necesario
+import ContactModal from "@/app/components/ContactModal";
 
-// 1. Definimos los textos fuera del componente
+// Textos
 const content = {
   en: {
     title: "Group classes",
@@ -23,19 +23,17 @@ const content = {
 };
 
 export default function GroupClasses({ lang = "en" }: { lang?: string }) {
-  // Estado para el modal
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // 3. Seleccionamos el idioma actual
   const t = content[lang as keyof typeof content] || content.en;
 
   return (
     <section id="group-classes" className="py-20 px-6 bg-white">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          
-          {/* COLUMNA IZQUIERDA: TEXTO */}
-          <div className="lg:col-span-4 space-y-6">
+
+          {/* TEXTO */}
+          <div className="order-1 lg:order-1 lg:col-span-5 space-y-6">
             <div className="inline-flex items-center justify-center p-2 rounded-full bg-[#d7bdb3]/10 text-[#d7bdb3]">
               <Users size={32} strokeWidth={1.5} />
             </div>
@@ -44,15 +42,16 @@ export default function GroupClasses({ lang = "en" }: { lang?: string }) {
               {t.title}
             </h2>
 
-            <div className="space-y-4 text-neutral-600 text-lg leading-relaxed max-w-sm">
+            <div className="space-y-4 text-neutral-600 text-lg leading-relaxed">
               <p>{t.p1}</p>
+
               <p className="relative inline-block">
                 {t.p2}
                 <span className="absolute bottom-1 left-0 w-full h-[6px] bg-[#d7bdb3]/20 -z-10"></span>
               </p>
             </div>
 
-            <button 
+            <button
               onClick={() => setIsModalOpen(true)}
               className="mt-4 bg-[#8e735b] text-white px-8 py-3 rounded-full font-medium hover:bg-[#7a624e] transition-all transform hover:scale-105 shadow-md cursor-pointer"
             >
@@ -60,23 +59,9 @@ export default function GroupClasses({ lang = "en" }: { lang?: string }) {
             </button>
           </div>
 
-          {/* COLUMNA DERECHA: VIDEOS */}
-          <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Tarjeta 1 */}
-            <div className="relative group overflow-hidden rounded-3xl aspect-[4/5] shadow-xl">
-              <video
-                src="/videos/group1.mp4"
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700"
-              />
-              <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors" />
-            </div>
-
-            {/* Tarjeta 2 */}
-            <div className="relative group overflow-hidden rounded-3xl aspect-[4/5] shadow-xl">
+          {/* VIDEO */}
+          <div className="order-2 lg:order-2 lg:col-span-7 flex justify-center">
+            <div className="relative group overflow-hidden rounded-3xl aspect-[4/5] shadow-xl bg-neutral-100 w-full max-w-[420px]">
               <video
                 src="/videos/group2.mp4"
                 autoPlay
@@ -85,6 +70,7 @@ export default function GroupClasses({ lang = "en" }: { lang?: string }) {
                 playsInline
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700"
               />
+
               <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors" />
             </div>
           </div>
@@ -92,7 +78,7 @@ export default function GroupClasses({ lang = "en" }: { lang?: string }) {
         </div>
       </div>
 
-      {/* Modal de Contacto */}
+      {/* MODAL */}
       <ContactModal
         open={isModalOpen}
         onClose={() => setIsModalOpen(false)}
