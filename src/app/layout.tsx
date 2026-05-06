@@ -27,3 +27,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   );
 }
+
+export const metadata: Metadata = {
+  title: "Coral Reef",
+  description: "Coral Reef Yoga",
+  icons: {
+  icon: [
+    { url: "/icon/logo.ico", type: "image/png" }
+  ],
+},
+};

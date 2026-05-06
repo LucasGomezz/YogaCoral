@@ -33,7 +33,7 @@ export default function VideosCarousel() {
 
     const mediaItems = [
         { type: "image", src: "/images/carousel1.PNG" },
-        { type: "video", src: "/videos/carousel2.mp4" }, // ⚠️ usar MP4
+        { type: "video", src: "/videos/carousel2.mp4" },
         { type: "image", src: "/images/carousel3.PNG" },
         { type: "video", src: "/videos/carousel4.mp4" },
         { type: "image", src: "/images/carousel5.PNG" },
