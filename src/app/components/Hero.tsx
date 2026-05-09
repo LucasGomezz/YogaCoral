@@ -38,7 +38,7 @@ export default function Hero({
 
   return (
     <>
-      <section className="relative overflow-hidden min-h-screen flex items-stretch">
+      <section className="relative overflow-hidden min-h-screen flex items-center justify-center">
 
         {/* SELECTOR DE IDIOMA DESKTOP */}
         <div className="hidden xl:flex absolute top-10 right-10 z-50 gap-3 text-sm font-bold">
@@ -71,22 +71,17 @@ export default function Hero({
           <div className={`absolute inset-y-0 left-0 w-full md:w-[70%] lg:w-[55%] bg-linear-to-r ${gradientColor} to-transparent`} />
         )}
 
-        {/* CONTENT - SWISS STYLE / BOLD MINIMAL */}
-        {/* Ajustamos pt (padding top) para dar aire respecto al menú blanco */}
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-10 md:px-16 flex flex-col justify-start pt-48 md:pt-64 pb-24 min-h-screen">
+        {/* CONTENT - ADJUSTED WITH PT-20 TO PUSH DOWN SLIGHTLY */}
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-10 md:px-16 pt-30 pb-12">
           
-          {/* mt-auto hace que el grid se apoye abajo si sobra espacio, pero el pt-48 previene que suba de más */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mt-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center lg:items-end">
 
             {/* Columna del Título */}
             <div className="lg:col-span-8">
               <h1 className="text-[clamp(2.5rem,10vw,6.5rem)] font-extrabold leading-[0.9] tracking-tight text-white mb-0">
-                {/* MOBILE */}
                 <span className="block md:hidden">
                   {title.replace("\n", " ")}
                 </span>
-
-                {/* DESKTOP */}
                 <span className="hidden md:block whitespace-pre-line">
                   {title}
                 </span>
