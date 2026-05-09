@@ -9,10 +9,11 @@ export default function VideosCarousel() {
         const container = scrollRef.current;
         if (!container) return;
 
-        let animationFrame: number;
+        // 👉 SOLO DESKTOP
+        if (window.innerWidth < 768) return;
 
-        const isMobile = window.innerWidth < 768;
-        const speed = isMobile ? 0.3 : 0.6;
+        let animationFrame: number;
+        const speed = 0.6;
 
         const step = () => {
             if (!container) return;
@@ -33,21 +34,16 @@ export default function VideosCarousel() {
 
     const mediaItems = [
         { type: "image", src: "/images/carousel1.PNG" },
-
         {
             type: "video",
             src: "https://res.cloudinary.com/dax4fjnwx/video/upload/q_auto,f_mp4/v1778294575/carousel2_saietv.mp4"
         },
-
         { type: "image", src: "/images/carousel3.PNG" },
-
         {
             type: "video",
             src: "https://res.cloudinary.com/dax4fjnwx/video/upload/q_auto,f_mp4/v1778294529/carousel4_tfwruq.mp4"
         },
-
         { type: "image", src: "/images/carousel5.PNG" },
-
         {
             type: "video",
             src: "https://res.cloudinary.com/dax4fjnwx/video/upload/q_auto,f_mp4/v1778295390/carousel6_lepu76.mp4"
@@ -61,7 +57,7 @@ export default function VideosCarousel() {
             <div className="max-w-7xl mx-auto overflow-hidden">
                 <div
                     ref={scrollRef}
-                    className="flex gap-6 overflow-x-auto no-scrollbar will-change-transform"
+                    className="flex gap-6 overflow-x-auto no-scrollbar will-change-transform scroll-smooth"
                 >
                     {loopMedia.map((item, index) => (
                         <div
