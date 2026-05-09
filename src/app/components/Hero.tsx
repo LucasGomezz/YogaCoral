@@ -88,7 +88,7 @@ export default function Hero({
           </video>
         ) : (
           <Image
-            src="/images/hero.jpg"
+            src="/images/heroo.jpg"
             alt={title}
             fill
             priority
