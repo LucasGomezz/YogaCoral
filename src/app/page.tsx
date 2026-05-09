@@ -10,13 +10,13 @@ import Navbar from "./components/Navbar"; // 1. Importa el Navbar aquí
 
 const content = {
   en: {
-    title: "Find balance, strength and well-being",
+    title: "Find\nbalance, strength and well-being",
     description: "Yoga classes to connect body, mind and soul.",
     button: "View classes",
     defaultService: "Select a service"
   },
   es: {
-    title: "Encuentra equilibrio, fuerza y bienestar",
+    title: "Encuentra\nequilibrio, fuerza y bienestar",
     description: "Clases de yoga para conectar cuerpo, mente y alma.",
     button: "Ver clases",
     defaultService: "Seleccionar servicio"
