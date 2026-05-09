@@ -36,13 +36,18 @@ export default function PrivateClasses({ lang = "en" }: { lang?: string }) {
           <div className="order-2 lg:order-1 lg:col-span-8 flex justify-center">
             <div className="relative group overflow-hidden rounded-3xl aspect-[4/5] shadow-xl bg-neutral-100 w-full max-w-md">
               <video
-                src="/videos/nati.mp4"
                 autoPlay
                 loop
                 muted
                 playsInline
+                preload="auto"
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700"
-              />
+              >
+                <source
+                  src="https://res.cloudinary.com/dax4fjnwx/video/upload/q_auto,f_mp4/v1778294474/nati_figi8x.mp4"
+                  type="video/mp4"
+                />
+              </video>
               <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors" />
             </div>
           </div>

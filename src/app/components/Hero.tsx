@@ -59,7 +59,14 @@ export default function Hero({
 
         {/* BACKGROUND MEDIA */}
         {mediaType === "video" ? (
-          <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover contrast-55">
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            className="absolute inset-0 w-full h-full object-cover contrast-75"
+          >
             <source src={mediaSrc} type="video/mp4" />
           </video>
         ) : (
@@ -73,7 +80,7 @@ export default function Hero({
 
         {/* CONTENT - ADJUSTED WITH PT-20 TO PUSH DOWN SLIGHTLY */}
         <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-10 md:px-16 pt-30 pb-12">
-          
+
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center lg:items-end">
 
             {/* Columna del Título */}

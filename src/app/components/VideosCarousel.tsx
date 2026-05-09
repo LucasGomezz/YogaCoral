@@ -33,11 +33,25 @@ export default function VideosCarousel() {
 
     const mediaItems = [
         { type: "image", src: "/images/carousel1.PNG" },
-        { type: "video", src: "/videos/carousel2.mp4" },
+
+        {
+            type: "video",
+            src: "https://res.cloudinary.com/dax4fjnwx/video/upload/q_auto,f_mp4/v1778294575/carousel2_saietv.mp4"
+        },
+
         { type: "image", src: "/images/carousel3.PNG" },
-        { type: "video", src: "/videos/carousel4.mp4" },
+
+        {
+            type: "video",
+            src: "https://res.cloudinary.com/dax4fjnwx/video/upload/q_auto,f_mp4/v1778294529/carousel4_tfwruq.mp4"
+        },
+
         { type: "image", src: "/images/carousel5.PNG" },
-        { type: "video", src: "/videos/carousel6.mp4" },
+
+        {
+            type: "video",
+            src: "https://res.cloudinary.com/dax4fjnwx/video/upload/q_auto,f_mp4/v1778295390/carousel6_lepu76.mp4"
+        },
     ];
 
     const loopMedia = [...mediaItems, ...mediaItems];

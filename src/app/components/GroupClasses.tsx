@@ -63,13 +63,17 @@ export default function GroupClasses({ lang = "en" }: { lang?: string }) {
           <div className="order-2 lg:order-2 lg:col-span-7 flex justify-center">
             <div className="relative group overflow-hidden rounded-3xl aspect-[4/5] shadow-xl bg-neutral-100 w-full max-w-[420px]">
               <video
-                src="/videos/group2.mp4"
                 autoPlay
                 loop
                 muted
                 playsInline
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700"
-              />
+              >
+                <source
+                  src="https://res.cloudinary.com/dax4fjnwx/video/upload/q_auto,f_mp4/v1778294524/group2_vxcqrc.mp4"
+                  type="video/mp4"
+                />
+              </video>
 
               <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors" />
             </div>
