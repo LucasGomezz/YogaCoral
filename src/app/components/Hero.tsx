@@ -38,9 +38,9 @@ export default function Hero({
 
   return (
     <>
-      <section className="relative overflow-hidden min-h-screen flex items-center">
+      <section className="relative overflow-hidden min-h-screen flex items-stretch">
 
-        {/* SELECTOR DE IDIOMA DESKTOP (Solo visible en pantallas grandes) */}
+        {/* SELECTOR DE IDIOMA DESKTOP */}
         <div className="hidden xl:flex absolute top-10 right-10 z-50 gap-3 text-sm font-bold">
           <Link
             href="/?lang=en"
@@ -72,13 +72,15 @@ export default function Hero({
         )}
 
         {/* CONTENT - SWISS STYLE / BOLD MINIMAL */}
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-10 md:px-16 flex flex-col justify-end pb-24 min-h-[85vh]">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
+        {/* Ajustamos pt (padding top) para dar aire respecto al menú blanco */}
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-10 md:px-16 flex flex-col justify-start pt-48 md:pt-64 pb-24 min-h-screen">
+          
+          {/* mt-auto hace que el grid se apoye abajo si sobra espacio, pero el pt-48 previene que suba de más */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mt-auto">
 
             {/* Columna del Título */}
             <div className="lg:col-span-8">
               <h1 className="text-[clamp(2.5rem,10vw,6.5rem)] font-extrabold leading-[0.9] tracking-tight text-white mb-0">
-
                 {/* MOBILE */}
                 <span className="block md:hidden">
                   {title.replace("\n", " ")}
@@ -102,7 +104,7 @@ export default function Hero({
                 className="group w-fit flex items-center gap-6 bg-transparent border border-white/30 hover:border-white text-white pl-8 pr-2 py-2 rounded-full transition-all duration-300 backdrop-blur-sm"
               >
                 <span className="text-sm font-bold uppercase tracking-widest">{buttonText}</span>
-                <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center text-black group-hover:bg-coral group-hover:text-[#8e735b] transition-colors duration-300">
+                <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center text-black group-hover:bg-coral group-hover:text-white transition-colors duration-300">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                     <line x1="5" y1="12" x2="19" y2="12"></line>
                     <polyline points="12 5 19 12 12 19"></polyline>
