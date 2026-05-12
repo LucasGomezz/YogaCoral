@@ -18,6 +18,17 @@ const bodyFont = Outfit({
   display: "swap",
 });
 
+export const metadata: Metadata = {
+  title: "Coral Reef",
+  description: "Coral Reef Yoga",
+  icons: {
+    icon: "/images/logoIcon.png",
+    shortcut: "/images/logoIcon.png",
+    apple: "/images/logoIcon.png",
+  },
+};
+
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="es" className={`${titlesFont.variable} ${bodyFont.variable} h-full antialiased`}>
@@ -27,13 +38,3 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   );
 }
-
-export const metadata: Metadata = {
-  title: "Coral Reef",
-  description: "Coral Reef Yoga",
-  icons: {
-  icon: [
-    { url: "/icon/logo.ico", type: "image/png" }
-  ],
-},
-};
