@@ -1,3 +1,4 @@
+import NutritionSection from "./components/NutritionSection";
 import GroupClasses from "./components/GroupClasses";
 import Hero from "./components/Hero";
 import IntroYoga from "./components/IntroYoga";
@@ -54,6 +55,7 @@ export default async function Home({
       <PrivateClasses lang={lang} />
       <GroupClasses lang={lang} />
       <EndYoga lang={lang} />
+      <NutritionSection lang={lang} />
       <VideosCarousel />
       <Footer />
     </>
