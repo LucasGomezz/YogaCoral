@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { nutritionServices } from "./nutritionContent";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, MapPin, Clock3, MessageCircle } from "lucide-react";
 
@@ -13,7 +14,7 @@ const content = {
     nameLabel: "Full Name",
     emailLabel: "Email Address",
     serviceLabel: "How can I guide you?",
-    services: ["Group Classes", "Private Classes"],
+    services: ["Group Classes", "Private Classes", nutritionServices.en],
     modeLabel: "Choose modality",
     modes: ["Online", "In-person"],
     messagePlaceholder: "Your message or intention for the practice...",
@@ -34,7 +35,7 @@ const content = {
     nameLabel: "Nombre completo",
     emailLabel: "Correo electrónico",
     serviceLabel: "¿Cómo puedo guiarte?",
-    services: ["Clases Grupales", "Clases Privadas"],
+    services: ["Clases Grupales", "Clases Privadas", nutritionServices.es],
     modeLabel: "Elegir modalidad",
     modes: ["Online", "Presencial"],
     messagePlaceholder: "Tu mensaje o intención para la práctica...",
