@@ -8,6 +8,10 @@ import ContactModal from "./ContactModal";
 import { nutritionContent, nutritionServices } from "./nutritionContent";
 
 const icons = [Apple, Leaf, UserRound, Dumbbell, Droplet, Heart];
+const consultationOptions = {
+  es: [nutritionServices.es, ...nutritionContent.es.consultations],
+  en: [nutritionServices.en, ...nutritionContent.en.consultations],
+};
 
 export default function NutritionSection({ lang }: { lang: "es" | "en" }) {
   const t = nutritionContent[lang];
@@ -31,7 +35,7 @@ export default function NutritionSection({ lang }: { lang: "es" | "en" }) {
             <div>
               <p className="mb-6 text-xs font-medium uppercase tracking-[0.2em] text-[#985f43]">{t.eyebrow}</p>
               <h2 id="nutrition-title" style={{ fontFamily: "Georgia, serif", fontWeight: 400 }} className="mb-6 text-4xl leading-[1.08] md:text-5xl xl:text-6xl">
-                {t.headline}<span className="mt-2 block italic text-[#a76d54]">{t.headlineAccent}</span>
+                {t.headline}{" "}<span className="mt-2 block italic text-[#a76d54]">{t.headlineAccent}</span>
               </h2>
               <p className="mb-8 max-w-xl text-base leading-relaxed md:text-lg">{t.introduction}</p>
               {bookButton()}
@@ -90,7 +94,7 @@ export default function NutritionSection({ lang }: { lang: "es" | "en" }) {
           <p className="text-center font-serif text-2xl italic leading-relaxed text-[#985f43] md:text-3xl">{t.wellbeing}</p>
         </div>
       </section>
-      <ContactModal open={contactOpen} onClose={() => setContactOpen(false)} lang={lang} defaultService={nutritionServices[lang]} />
+      <ContactModal open={contactOpen} onClose={() => setContactOpen(false)} lang={lang} defaultService={nutritionServices[lang]} serviceOptions={consultationOptions[lang]} />
     </>
   );
 }

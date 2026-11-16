@@ -54,6 +54,7 @@ type ContactModalProps = {
   open: boolean;
   onClose: () => void;
   defaultService?: string;
+  serviceOptions?: string[];
   lang?: string;
 };
 
@@ -61,9 +62,12 @@ export default function ContactModal({
   open,
   onClose,
   defaultService,
+  serviceOptions,
   lang = "en",
 }: ContactModalProps) {
   const t = content[lang as keyof typeof content] || content.en;
+
+  const services = serviceOptions ?? t.services;
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -74,7 +78,7 @@ export default function ContactModal({
 
   useEffect(() => {
     if (open) {
-      if (defaultService && t.services.includes(defaultService)) {
+      if (defaultService && services.includes(defaultService)) {
         setService(defaultService);
       } else {
         setService(t.serviceLabel);
@@ -82,7 +86,7 @@ export default function ContactModal({
       setMode(t.modeLabel);
       setErrors({ name: false, email: false, message: false });
     }
-  }, [open, lang, defaultService, t.services, t.serviceLabel, t.modeLabel]);
+  }, [open, lang, defaultService, services, t.serviceLabel, t.modeLabel]);
 
   useEffect(() => {
     if (!open) {
@@ -206,7 +210,7 @@ export default function ContactModal({
                         className="w-full bg-neutral-50 border border-neutral-200 rounded-2xl px-5 py-4 outline-none appearance-none cursor-pointer text-neutral-800 focus:bg-white focus:ring-4 focus:ring-[#d7bdb3]/10 focus:border-[#d7bdb3]"
                       >
                         <option value={t.serviceLabel}>{t.serviceLabel}</option>
-                        {t.services.map((s) => (
+                        {services.map((s) => (
                           <option key={s} value={s}>{s}</option>
                         ))}
                       </select>
